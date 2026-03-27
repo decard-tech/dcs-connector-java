@@ -1,6 +1,6 @@
 package com.dicard.connector.client.common;
 
-import com.dcscc.connector.client.common.CommonRet;
+import com.dicard.connector.client.common.CommonRet;
 import com.dicard.connector.client.common.auth.Authentication;
 import com.dicard.connector.client.common.auth.HmacAuthentication;
 import com.dicard.connector.client.common.configuration.ClientConfiguration;

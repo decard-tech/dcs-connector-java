@@ -94,15 +94,43 @@ public class ClientConfiguration {
     }
 
     /**
-     * Basic validation hook, currently only checks presence of credentials.
+     * Validates the configuration parameters.
+     *
+     * @throws IllegalArgumentException if the configuration is invalid
      */
     public void validate() {
         if (apiKey == null || apiKey.trim().isEmpty()) {
-            throw new IllegalArgumentException("API key must not be null or empty");
+            throw new IllegalArgumentException("API key cannot be null or empty");
         }
         if (secretKey == null || secretKey.trim().isEmpty()) {
-            throw new IllegalArgumentException("Secret key must not be null or empty");
+            throw new IllegalArgumentException("Secret key cannot be null or empty");
         }
+        if (baseUrl == null || baseUrl.trim().isEmpty()) {
+            throw new IllegalArgumentException("Base URL cannot be null or empty");
+        }
+        if (connectTimeout <= 0) {
+            throw new IllegalArgumentException("Connect timeout must be positive");
+        }
+        if (readTimeout <= 0) {
+            throw new IllegalArgumentException("Read timeout must be positive");
+        }
+        if (writeTimeout <= 0) {
+            throw new IllegalArgumentException("Write timeout must be positive");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ClientConfiguration{"
+                + "apiKey='" + (apiKey != null ? "***" : null) + '\''
+                + ", secretKey='" + (secretKey != null ? "***" : null) + '\''
+                + ", baseUrl='" + baseUrl + '\''
+                + ", connectTimeout=" + connectTimeout
+                + ", readTimeout=" + readTimeout
+                + ", writeTimeout=" + writeTimeout
+                + ", proxy=" + proxy
+                + ", debug=" + debug
+                + '}';
     }
 }
 
